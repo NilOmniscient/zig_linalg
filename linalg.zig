@@ -46,6 +46,7 @@ fn vecLen(T: type) comptime_int {
     if (@typeInfo(T) != .vector) @compileError("Expected a @Vector type got: " ++ @typeName(T));
     return @typeInfo(T).vector.len;
 }
+// I don't really remember where, but this swizzle function was pulled from another zig library
 pub fn sw(vec: anytype, comptime components: []const u8) @Vector(components.len, info(@TypeOf(vec)).child) {
     const T = info(@TypeOf(vec)).child;
     comptime var mask: [components.len]u8 = undefined;
